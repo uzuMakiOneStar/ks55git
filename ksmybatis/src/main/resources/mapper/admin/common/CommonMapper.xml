@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ksmybatis.admin.common.mapper.CommonMapper">
+
+	<resultMap type="ksmybatis.admin.common.domain.CommonCode" id="commonResultMap">
+
+		<id column="comm_group_cd" 				property="commGroupCode"/>
+		<result column="comm_cd" 				property="commCode"/>
+		<result column="comm_group_nm" 			property="commGroupName"/>
+		<result column="comm_group_eng_nm" 		property="commGroupEngName"/>
+		<result column="comm_nm" 				property="commName"/>
+		<result column="comm_eng_nm" 			property="commEngName"/>
+		<result column="comm_cd_use_yn" 		property="commCodeUseYN"/>
+		<result column="comm_cd_reg_date" 		property="commCodeRegDate"/>
+	</resultMap>
+	<select id="getCommonCodeListByGroupCode" parameterType="string" resultMap="commonResultMap">
+		/* 회원목록조회 */
+		select
+			cgc.comm_group_cd,
+			cgc.comm_group_nm,
+			cgc.comm_group_eng_nm,
+			cc.comm_cd,
+			cc.comm_nm,
+			cc.comm_eng_nm,
+			cc.comm_cd_use_yn,
+			cc.comm_cd_reg_date
+		from
+			comm_group_code cgc inner join  comm_code cc 
+			on cgc.comm_group_cd  = cc.comm_group_cd
+		where
+			cgc.comm_group_cd = #{groupCode};
+	</select>
+</mapper>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{admin/layout/layout_main}">
+	
+	<head>
+		<meta name="description" content="한국스마트정보교육원 ksmybatis" />
+	</head>
+	
+	<!-- 추가할 js file -->
+	<th:block layout:fragment="jsFile">
+	</th:block>
+	
+	<!-- 추가할 script -->
+	<th:block layout:fragment="jsScript">
+		<script>
+		</script>
+	</th:block>
+	
+	<!-- 추가할 페이지 contents -->
+	<th:block layout:fragment="contents">
+		<div class="content-header">
+            <div>
+                <h2 class="content-title card-title">상품등록</h2>
+            </div>
+        </div>
+        <div class="card mb-4 row col-lg-10">
+        	<form id="addMemberForm" th:action="@{/admin/member/addMember}" method="post">
+	            <header class="card-header">
+	                <div class="row gx-3 justify-content-end">
+	                    <div class="col-lg-2 ms-auto d-flex justify-content-between">
+	                        <button type="submit" id="addMemberBtn" class="btn btn-success text-white">상품등록</button>
+	                        <button type="reset" id="resetBtn" class="btn btn-warning text-white">등록취소</button>
+	                    </div>
+	                </div>
+	            </header>
+	            <!-- card-header end// -->
+	            <div class="card-body">
+	                <div class="row">
+	                    <div class="col-md-2">
+	                        <h6 class="fs-5">1. 필수입력항목</h6>
+	                    </div>
+	                    <div class="col-md-10">
+	                    	<div class="row">	                    	
+		                        <div class="mb-4 col-md-6">
+		                        	<div class="row align-items-end">
+		                        		<div class="col-md-8">		                        		
+				                            <label class="form-label fs-6 fw-bold">제품코드</label>
+					                        <input type="text" placeholder="아이디를 입력해주세요" class="form-control"
+					                        	   id="memberId" name="memberId" readonly="readonly">
+		                        		</div>		                        	
+		                        		<div class="col-md-4">
+			                            	<button type="button" id="idCheckBtn"
+			                            			class="btn btn-info w-100 justify-content-center text-white fw-bold">제품코드 생성</button>
+			                            </div>
+		                        	</div>
+		                        </div>
+		                        <div class="mb-4 col-md-6">
+		                            <label class="form-label fs-6 fw-bold">제품명</label>
+		                            <input type="text" placeholder="비밀번호를 입력해주세요" class="form-control"
+		                            	   id="memberPw" name="memberPw">
+		                        </div>
+	                    	</div>
+	                    	<div class="row">	                    	
+		                        <div class="mb-4 col-lg-6">
+                                    <label class="form-label fs-6 fw-bold">판매처아이디</label>
+                                    <select class="form-select text-center" id="memberLevel" name="memberLevel">
+                                        <option value=""> == 제품등록인을 선택해주세요 == </option>
+                                        <th:block th:unless="${#lists.isEmpty(gradeList)}"
+                                                  th:each="g : ${gradeList}">
+                                            <option th:value="${g.commCode}" th:text="${g.commName}"></option>
+                                        </th:block>
+                                    </select>
+                                </div>
+		                        <div class="mb-4 col-lg-6">
+		                            <label class="form-label fs-6 fw-bold">제품가격</label>
+		                            <input type="text" placeholder="이름을 입력해주세요" class="form-control"
+		                            	   id="memberName" name="memberName">
+		                        </div>
+	                    	
+	                    	</div>
+	                    </div> <!-- col.// -->
+	                </div>
+	            </div>
+        	</form>
+            <!-- card-body end// -->
+        </div>
+	</th:block>
+	
+	
+</html>
+
+
+
+
+
+
+
+
+
+

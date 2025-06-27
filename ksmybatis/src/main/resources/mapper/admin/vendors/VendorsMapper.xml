@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="ksmybatis.admin.vendors.mapper.VendorsMapper">
+  	<delete id="removeVendorsBySellerId" parameterType="string">
+  		delete
+		from
+			vendors v 
+		where
+			v.vend_mbr_id = #{sellerId};
+  	</delete>
+  
+  	<select id="getVendorsList" resultType="ksmybatis.admin.vendors.domain.Vendors">
+  		select 
+			vend_cd 	AS vendCd, 
+			vend_mbr_id 	AS vendMbrId, 
+			vend_brno 	AS vendBrno, 
+			vend_name 	AS vendName, 
+			vend_addr 	AS vendAddr, 
+			vend_daddr 	AS vendDaddr, 
+			vend_zip 	AS vendZip, 
+			vend_telno 	AS vendTelno
+		from 
+			vendors;
+  	</select>
+  </mapper>
